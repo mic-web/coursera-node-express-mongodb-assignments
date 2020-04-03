@@ -1,11 +1,9 @@
 module.exports = {
   root: true,
   plugins: ['prettier'],
-  extends: ['eslint:recommended', 'plugin:prettier/recommended'],
+  extends: ['airbnb', 'plugin:prettier/recommended'],
   rules: {
     'prettier/prettier': 'error',
-    'no-unused-vars': 2,
-    'no-unused-expressions': 2,
   },
   env: {
     browser: true,

@@ -16,7 +16,7 @@ promotionRouter
     res.end('Will send all the promotions to you')
   })
   .post((req, res) => {
-    res.end('Will add the promotion: ' + req.body.name + ' with details: ' + req.body.description)
+    res.end(`Will add the promotion: ${req.body.name} with details: ${req.body.description}`)
   })
   .put((req, res) => {
     res.statusCode = 403
@@ -34,17 +34,17 @@ promotionRouter
     next()
   })
   .get((req, res) => {
-    res.end('Will send the promotion ' + req.params.promotionId + ' to you.')
+    res.end(`Will send the promotion ${req.params.promotionId} to you.`)
   })
   .put((req, res) => {
-    res.end('Will update the promotion ' + req.params.promotionId)
+    res.end(`Will update the promotion ${req.params.promotionId}`)
   })
   .post((req, res) => {
     res.statusCode = 403
     res.end('POST operation not supported on /promotions')
   })
   .delete((req, res) => {
-    res.end('Deleting the promotion ' + req.params.promotionId)
+    res.end(`Deleting the promotion ${req.params.promotionId}`)
   })
 
 module.exports = promotionRouter

@@ -16,7 +16,7 @@ leaderRouter
     res.end('Will send all the leaders to you')
   })
   .post((req, res) => {
-    res.end('Will add the leader: ' + req.body.name + ' with details: ' + req.body.description)
+    res.end(`Will add the leader: ${req.body.name} with details: ${req.body.description}`)
   })
   .put((req, res) => {
     res.statusCode = 403
@@ -34,17 +34,17 @@ leaderRouter
     next()
   })
   .get((req, res) => {
-    res.end('Will send the leader ' + req.params.leaderId + ' to you.')
+    res.end(`Will send the leader ${req.params.leaderId} to you.`)
   })
   .put((req, res) => {
-    res.end('Will update the leader ' + req.params.leaderId)
+    res.end(`Will update the leader ${req.params.leaderId}`)
   })
   .post((req, res) => {
     res.statusCode = 403
     res.end('POST operation not supported on /leaders')
   })
   .delete((req, res) => {
-    res.end('Deleting the leader ' + req.params.leaderId)
+    res.end(`Deleting the leader ${req.params.leaderId}`)
   })
 
 module.exports = leaderRouter
