@@ -5,7 +5,8 @@
   "scripts": {
     "start1": "node assignment-1/index.js",
     "start2": "node assignment-2/bin/www",
-    "start": "npm run start2",
+    "start3": "node assignment-3/bin/www",
+    "start": "npm run start3",
     "lint": "eslint ."
   },
   "dependencies": {
@@ -13,12 +14,14 @@
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "^4.17.1",
+    "express-session": "^1.17.0",
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
     "mongodb": "^3.5.5",
     "mongoose": "^5.9.7",
     "mongoose-currency": "^0.2.0",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "session-file-store": "^1.4.0"
   },
   "devDependencies": {
     "eslint": "^6.8.0",
