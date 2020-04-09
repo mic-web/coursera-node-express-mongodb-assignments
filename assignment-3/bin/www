@@ -6,6 +6,10 @@
 
 const debug = require('debug')('confusionserver:server')
 const http = require('http')
+const https = require('https')
+const fs = require('fs')
+const path = require('path')
+
 const app = require('../app')
 
 /**
@@ -33,20 +37,13 @@ function normalizePort(val) {
 
 const port = normalizePort(process.env.PORT || '3000')
 app.set('port', port)
+app.set('secPort', port + 443)
 
 /**
  * Create HTTP server.
  */
 
 const server = http.createServer(app)
-
-/**
- * Listen on provided port, on all network interfaces.
- */
-
-server.listen(port)
-server.on('error', onError)
-server.on('listening', onListening)
 
 /**
  * Event listener for HTTP server "error" event.
@@ -83,3 +80,22 @@ function onListening() {
   const bind = typeof addr === 'string' ? `pipe ${addr}` : `port ${addr.port}`
   debug(`Listening on ${bind}`)
 }
+
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+server.listen(port)
+server.on('error', onError)
+server.on('listening', onListening)
+
+const options = {
+  key: fs.readFileSync(path.join(__dirname, '/private.key')),
+  cert: fs.readFileSync(path.join(__dirname, '/certificate.pem')),
+}
+
+const secureServer = https.createServer(options, app)
+secureServer.listen(app.get('secPort'), () => {
+  console.log('Server listening on port ', app.get('secPort'))
+})
+secureServer.on('error', onError)
+secureServer.on('listening', onListening)
