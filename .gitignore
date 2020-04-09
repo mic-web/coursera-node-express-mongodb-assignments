@@ -2,6 +2,6 @@ node_modules
 sessions
 .DS_Store
 .vscode
-certificate.pem
-cert.csr
-private.key
+*.pem
+*.csr
+*.key
