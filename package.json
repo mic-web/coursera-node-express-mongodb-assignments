@@ -6,7 +6,8 @@
     "start1": "nodemon assignment-1/index.js",
     "start2": "nodemon assignment-2/bin/www",
     "start3": "nodemon assignment-3/bin/www",
-    "start": "npm run start3",
+    "start4": "nodemon assignment-4/bin/www",
+    "start": "npm run start4",
     "lint": "eslint ."
   },
   "dependencies": {
@@ -22,6 +23,7 @@
     "mongoose": "^5.9.7",
     "mongoose-currency": "^0.2.0",
     "morgan": "^1.10.0",
+    "multer": "^1.4.2",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
