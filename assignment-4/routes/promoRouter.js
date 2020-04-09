@@ -1,5 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const cors = require('./cors')
 
 const Promotions = require('../models/promotions')
 const authenticate = require('../authenticate')
@@ -10,7 +11,8 @@ promotionRouter.use(bodyParser.json())
 
 promotionRouter
   .route('/')
-  .get((req, res, next) => {
+  .options(cors.corsWithOptions, (req, res) => res.sendStatus(200))
+  .get(cors.cors, (req, res, next) => {
     Promotions.find({})
       .then((promotions) => {
         res.statusCode = 200
@@ -19,7 +21,7 @@ promotionRouter
       })
       .catch((err) => next(err))
   })
-  .post(authenticate.verifyAdmin, (req, res, next) => {
+  .post(cors.corsWithOptions, authenticate.verifyAdmin, (req, res, next) => {
     Promotions.create(req.body)
       .then((promotion) => {
         res.statusCode = 200
@@ -28,11 +30,11 @@ promotionRouter
       })
       .catch((err) => next(err))
   })
-  .put(authenticate.verifyAdmin, (req, res) => {
+  .put(cors.corsWithOptions, authenticate.verifyAdmin, (req, res) => {
     res.statusCode = 403
     res.end('PUT operation not supported on /promotions')
   })
-  .delete(authenticate.verifyAdmin, (req, res) => {
+  .delete(cors.corsWithOptions, authenticate.verifyAdmin, (req, res) => {
     Promotions.remove({}).then((promotion) => {
       res.statusCode = 200
       res.setHeader('Content-Type', 'application/json')
@@ -42,7 +44,8 @@ promotionRouter
 
 promotionRouter
   .route('/:promotionId')
-  .get((req, res, next) => {
+  .options(cors.corsWithOptions, (req, res) => res.sendStatus(200))
+  .get(cors.cors, (req, res, next) => {
     Promotions.findById(req.params.promotionId)
       .then((promotion) => {
         res.statusCode = 200
@@ -51,7 +54,7 @@ promotionRouter
       })
       .catch((err) => next(err))
   })
-  .put(authenticate.verifyAdmin, (req, res, next) => {
+  .put(cors.corsWithOptions, authenticate.verifyAdmin, (req, res, next) => {
     Promotions.findByIdAndUpdate(
       req.params.promotionId,
       {
@@ -66,11 +69,11 @@ promotionRouter
       })
       .catch((err) => next(err))
   })
-  .post(authenticate.verifyAdmin, (req, res) => {
+  .post(cors.corsWithOptions, authenticate.verifyAdmin, (req, res) => {
     res.statusCode = 403
     res.end('POST operation not supported on /promotions')
   })
-  .delete(authenticate.verifyAdmin, (req, res) => {
+  .delete(cors.corsWithOptions, authenticate.verifyAdmin, (req, res) => {
     Promotions.findByIdAndRemove(req.params.promotionId).then((promotion) => {
       res.statusCode = 200
       res.setHeader('Content-Type', 'application/json')

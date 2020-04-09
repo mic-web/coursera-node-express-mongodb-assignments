@@ -3,11 +3,12 @@ const bodyParser = require('body-parser')
 const passport = require('passport')
 const User = require('../models/user')
 const authenticate = require('../authenticate')
+const cors = require('./cors')
 
 const router = express.Router()
 router.use(bodyParser.json())
 
-router.get('/', authenticate.verifyAdmin, (req, res, next) => {
+router.get('/', cors.corsWithOptions, authenticate.verifyAdmin, (req, res, next) => {
   User.find({})
     .then((users) => {
       res.statusCode = 200
@@ -17,7 +18,7 @@ router.get('/', authenticate.verifyAdmin, (req, res, next) => {
     .catch((err) => next(err))
 })
 
-router.post('/signup', (req, res) => {
+router.post('/signup', cors.corsWithOptions, (req, res) => {
   User.register(new User({ username: req.body.username }), req.body.password, (err, user) => {
     if (err) {
       res.statusCode = 500
@@ -47,7 +48,7 @@ router.post('/signup', (req, res) => {
   })
 })
 
-router.post('/login', passport.authenticate('local'), (req, res) => {
+router.post('/login', cors.corsWithOptions, passport.authenticate('local'), (req, res) => {
   const token = authenticate.getToken({ _id: req.user._id })
   res.statusCode = 200
   res.setHeader('Content-Type', 'application/json')
