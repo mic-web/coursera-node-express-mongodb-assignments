@@ -9,7 +9,7 @@ const indexRouter = require('./routes/index')
 const usersRouter = require('./routes/users')
 const dishRouter = require('./routes/dishRouter')
 const leaderRouter = require('./routes/leaderRouter')
-const promitionRouter = require('./routes/promoRouter')
+const promotionRouter = require('./routes/promoRouter')
 const config = require('./config')
 
 const url = config.mongoUrl
@@ -42,7 +42,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 app.use('/dishes', dishRouter)
 app.use('/leaders', leaderRouter)
-app.use('/promotions', promitionRouter)
+app.use('/promotions', promotionRouter)
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

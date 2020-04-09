@@ -7,12 +7,12 @@ const authenticate = require('../authenticate')
 const router = express.Router()
 router.use(bodyParser.json())
 
-router.get('/', (req, res, next) => {
+router.get('/', authenticate.verifyAdmin, (req, res, next) => {
   User.find({})
     .then((users) => {
       res.statusCode = 200
       res.setHeader('Content-Type', 'application/json')
-      res.json({ users: users.map((user) => user.username) })
+      res.json(users)
     })
     .catch((err) => next(err))
 })
@@ -22,12 +22,26 @@ router.post('/signup', (req, res) => {
     if (err) {
       res.statusCode = 500
       res.setHeader('Content-Type', 'application/json')
-      res.json({ error: err })
+      res.json({ err })
     } else {
-      passport.authenticate('local')(req, res, () => {
-        res.statusCode = 200
-        res.setHeader('Content-Type', 'application/json')
-        res.json({ success: true, status: 'Registration Successful!', user })
+      if (req.body.firstname) {
+        user.firstname = req.body.firstname
+      }
+      if (req.body.lastname) {
+        user.lastname = req.body.lastname
+      }
+      user.save((e, updatedUser) => {
+        if (e) {
+          res.statusCode = 500
+          res.setHeader('Content-Type', 'application/json')
+          res.json({ err: e })
+          return
+        }
+        passport.authenticate('local')(req, res, () => {
+          res.statusCode = 200
+          res.setHeader('Content-Type', 'application/json')
+          res.json({ success: true, status: 'Registration Successful!', updatedUser })
+        })
       })
     }
   })
