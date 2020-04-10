@@ -5,6 +5,17 @@ This repository contains my solutions for all assignments. On top of that I adde
 
 If you're following the course as well and are looking for solutions I hope that I can help you if you're stuck with a problem or if you want to find out if there are better solutions.
 
+# Topics involved
+Following technologies had been evaluated and used with this tutorial:
+* NodeJS
+* Express
+* MongoDB (NoSQL)
+* Mongoose
+* Authentication: compared JWT, OAuth2, Sessions and Basic
+* Handling CORS
+* File upload
+* RESTful API
+
 # Installation
 To install all packages, just run `npm install`.
 
