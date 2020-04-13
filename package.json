@@ -7,7 +7,8 @@
     "start2": "nodemon assignment-2/bin/www",
     "start3": "nodemon assignment-3/bin/www",
     "start4": "nodemon assignment-4/bin/www",
-    "start": "npm run start4",
+    "start-react-integration": "nodemon react-integration/bin/www",
+    "start": "npm run start-react-integration",
     "lint": "eslint ."
   },
   "dependencies": {

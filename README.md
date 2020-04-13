@@ -23,3 +23,7 @@ You should also install the Prettier in your IDE, as it helps you a lot with aut
 
 # Run
 Execute `npm start` to the example web server.
+
+# Client application
+An example client application that matches the REST API can be found here:
+https://github.com/jmuppala/conFusion-React

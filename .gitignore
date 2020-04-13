@@ -2,7 +2,8 @@ node_modules
 sessions
 .DS_Store
 .vscode
-assignment-4/config.js
+config.js
+images/
 .env
 *.pem
 *.csr
