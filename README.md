@@ -33,3 +33,5 @@ Execute `npm start` to the example web server.
 
 An example client application that matches the REST API can be found here:
 https://github.com/jmuppala/conFusion-React
+
+You will have to provide a matching setup (e.g. MongoDB database) to be able to try this out.
