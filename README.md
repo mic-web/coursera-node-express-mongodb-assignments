@@ -1,10 +1,10 @@
 # Example solutions for assignments
 
-Coursera provides a course "Server-side Development with NodeJS, Express and MongoDB" that's a good starting point for learning the ME(R)N stack.
+Coursera provides a course "Server-side Development with NodeJS, Express and MongoDB" that's a good starting point for learning NodeJS, Express and MongoDB.
 
 This repository contains my solutions for all assignments. On top of that I added some tools that help during development (e.g. ESLint, Prettier).
 
-If you're following the course as well and are looking for solutions I hope that I can help you if you're stuck with a problem or if you want to find out if there are better solutions.
+If you're following the course as well and are looking for solutions I hope that I can help you if you're stuck with a problem or if you want to find out if there are better solutions. Just please ensure to follow the Coursera Code of Conduct - it's for your own benefit.
 
 # Topics involved
 
